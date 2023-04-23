@@ -96,7 +96,7 @@ Boundary Conditions
 
          Condition                  Value   
          --------------------------------
-         Velocity Magnitude (m/s)   0.5     
+         Velocity Magnitude (m/s)   0.05    
 
       outlet
 
