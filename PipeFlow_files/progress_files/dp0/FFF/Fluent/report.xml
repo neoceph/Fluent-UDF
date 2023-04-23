@@ -1,0 +1,183 @@
+<FluentXMLReport>
+<version>
+Fluent
+Version: 2d, dp, pbns, sstkw (2d, double precision, pressure-based, SST k-omega)
+Release: 20.2.0
+Title: 
+</version>
+
+<Models>
+
+Models
+------
+
+   Model                        Settings                       
+   ---------------------------------------------------------
+   Space                        2D                             
+   Time                         Steady                         
+   Viscous                      SST k-omega turbulence model   
+   Heat Transfer                Disabled                       
+   Solidification and Melting   Disabled                       
+   Species                      Disabled                       
+   Coupled Dispersed Phase      Disabled                       
+   NOx Pollutants               Disabled                       
+   SOx Pollutants               Disabled                       
+   Soot                         Disabled                       
+   Mercury Pollutants           Disabled                       
+   Structure                    Disabled                       
+   Acoustics                    Disabled                       
+   Eulerian Wall Film           Disabled                       
+   Potential/Li-ion Battery     Disabled                       
+   Multiphase                   Disabled                       
+
+</Models>
+
+<MaterialProperties>
+Material Properties
+-------------------
+
+   Material: water-liquid (fluid)
+
+      Property                        Units     Method     Value(s)   
+      -------------------------------------------------------------
+      Density                         kg/m3     constant   998.2      
+      Cp (Specific Heat)              j/kg-k    constant   4182       
+      Thermal Conductivity            w/m-k     constant   0.6        
+      Viscosity                       kg/m-s    constant   0.001003   
+      Molecular Weight                kg/kmol   constant   18.0152    
+      Thermal Expansion Coefficient   1/k       constant   0          
+      Speed of Sound                  m/s       none       #f         
+
+   Material: aluminum (solid)
+
+      Property               Units    Method     Value(s)   
+      ---------------------------------------------------
+      Density                kg/m3    constant   2719       
+      Cp (Specific Heat)     j/kg-k   constant   871        
+      Thermal Conductivity   w/m-k    constant   202.4      
+
+</MaterialProperties>
+
+<CellZoneConditions>
+Cell Zone Conditions
+--------------------
+
+   Zones
+
+      name           id   type    
+      -------------------------
+      surface_body   2    fluid   
+
+   Setup Conditions
+
+      surface_body
+
+         Condition       Value   
+         ---------------------
+         Frame Motion?   no      
+
+</CellZoneConditions>
+
+<BoundaryConditions>
+Boundary Conditions
+-------------------
+
+   Zones
+
+      name     id   type              
+      -----------------------------
+      inlet    5    velocity-inlet    
+      outlet   6    pressure-outlet   
+      wall     7    wall              
+
+   Setup Conditions
+
+      inlet
+
+         Condition                  Value   
+         --------------------------------
+         Velocity Magnitude (m/s)   0.5     
+
+      outlet
+
+         Condition   Value   
+         -----------------
+
+      wall
+
+         Condition                  Value             
+         ------------------------------------------
+         Wall Motion                Stationary Wall   
+         Shear Boundary Condition   No Slip           
+         Wall Surface Roughness     0                 
+
+</BoundaryConditions>
+
+<SolverSettings>
+Solver Settings
+---------------
+
+   Equations
+
+      Equation     Solved   
+      -------------------
+      Flow         yes      
+      Turbulence   yes      
+
+   Numerics
+
+      Numeric                         Enabled   
+      ---------------------------------------
+      Absolute Velocity Formulation   yes       
+
+   Relaxation
+
+      Variable                    Relaxation Factor   
+      ---------------------------------------------
+      Density                     1                   
+      Body Forces                 1                   
+      Turbulent Kinetic Energy    0.75                
+      Specific Dissipation Rate   0.75                
+      Turbulent Viscosity         1                   
+
+   Linear Solver
+
+      Variable                    Solver Type   Termination Criterion   Residual Reduction Tolerance   
+      ----------------------------------------------------------------------------------------------
+      Flow                        F-Cycle       0.1                                                    
+      Turbulent Kinetic Energy    F-Cycle       0.1                                                    
+      Specific Dissipation Rate   F-Cycle       0.1                                                    
+
+   Pressure-Velocity Coupling
+
+      Parameter                            Value     
+      --------------------------------------------
+      Type                                 Coupled   
+      Pseudo Transient                     yes       
+      Explicit momentum under-relaxation   0.5       
+      Explicit pressure under-relaxation   0.5       
+
+   Discretization Scheme
+
+      Variable                    Scheme                
+      -----------------------------------------------
+      Pressure                    Second Order          
+      Momentum                    Second Order Upwind   
+      Turbulent Kinetic Energy    First Order Upwind    
+      Specific Dissipation Rate   First Order Upwind    
+
+   Solution Limits
+
+      Quantity                         Limit    
+      ---------------------------------------
+      Minimum Absolute Pressure        1        
+      Maximum Absolute Pressure        5e+10    
+      Minimum Temperature              1        
+      Maximum Temperature              5000     
+      Minimum Turb. Kinetic Energy     1e-14    
+      Minimum Spec. Dissipation Rate   1e-20    
+      Maximum Turb. Viscosity Ratio    100000   
+
+</SolverSettings>
+
+</FluentXMLReport>
