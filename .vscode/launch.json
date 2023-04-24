@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "(Windows) Attach",
+            "type": "cppvsdbg",
+            "request": "attach",
+        }
+    ],
+    "version": "2.0.0"
+}
