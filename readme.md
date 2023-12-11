@@ -16,3 +16,5 @@ The provided makefile_nt.udf is making only the following two changes
 Attach to fl_mpi2020.exe
 
 Now introduce a breakpoint and run fluent process. The breakpoint will be hit.
+
+A video instruction is available [here](https://youtu.be/sK7u416BOas)
