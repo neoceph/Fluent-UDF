@@ -1,17 +1,11 @@
-;read case file
-file/read-case test.cas
+;read mesh file
+file/read .\PipeFlow_files\dp0\FFF\MECH\FFF.msh
 
-; Autosaving data every 2 time steps
-/file/auto-save/data-frequency 2
-/file/auto-save/root-name "test_save"
-/file/confirm-overwrite no
+;read case file
+file/read-case .\PipeFlow_files\dp0\FFF\fluent\FFF-6.cas.gz yes
 
 ; Initialize the solution
-/solve/init/init
+/solve/initialize/initialize-flow
 
-;Calculate interations
-solve/set/time-step 1e-8
-
-;To iterate with unsteady solver (2 time steps, with 20 maximum iterations per time step)
-solve/dual-time-iterate 2 20
-
+; Run 50 iterations
+/solve/iterate 50
