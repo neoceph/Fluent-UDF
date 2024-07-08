@@ -4,6 +4,14 @@ file/read .\PipeFlow_files\dp0\FFF\MECH\FFF.msh
 ;read case file
 file/read-case .\PipeFlow_files\dp0\FFF\fluent\FFF-6.cas.gz yes
 
+/define/user-defined/compiled-functions compile libudf yes udfExample.c "" ""
+
+; Load the UDF library
+/define/user-defined/compiled-functions/ load libudf
+
+; specifying the inlet velocity to zone name 'inlet'
+/define/boundary-conditions/velocity-inlet inlet no no yes yes yes yes udf inlet_x_velocity::libudf no 0 no no yes 5 10
+
 ; Initialize the solution
 /solve/initialize/initialize-flow
 
