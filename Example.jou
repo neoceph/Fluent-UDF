@@ -2,7 +2,7 @@
 file/read ./PipeFlow_files/dp0/FFF/MECH/FFF.msh
 
 ;read case file
-file/read-case ./PipeFlow_files/dp0/FFF/fluent/FFF-6.cas.gz yes
+file/read-case ./PipeFlow_files/dp0/FFF/Fluent/FFF-6.cas.gz yes
 
 /define/user-defined/compiled-functions compile libudf yes udfExample.c "" ""
 
