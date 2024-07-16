@@ -27,4 +27,7 @@ NP=`wc -l < $PBS_NODEFILE`
 
 export OMP_NUM_THREADS=36
 
+# Load the module for ansys appropriate installation if necessary
+module load ansys/2020R2
+
 fluent 3ddp -t$OMP_NUM_THREADS -g -i ./Example.jou output.txt
