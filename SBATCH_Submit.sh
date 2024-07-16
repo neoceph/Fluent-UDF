@@ -1,12 +1,13 @@
 #!/bin/sh
 ## Specifying a job name
 #SBATCH --job-name=ANSYS_test
-## Reserving one node and 36 cpus
+## Reserving one node and 2 cpus
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=36
+#SBATCH --ntasks-per-node=2
 ## Reserving a specific node "node004" and 36 cpus (uncomment if needed)
 ##SBATCH --nodelist=node004
-#SBATCH --time=03:00:00
+#SBATCH --time=00:05:00
+#SBATCH --account=PNS0496
 #SBATCH --mem=5GB
 #SBATCH --mail-user=aamin1@udayton.edu
 #SBATCH --mail-type=END,FAIL
@@ -25,9 +26,9 @@ NP=$SLURM_NTASKS
 
 # run the simulation
 
-export OMP_NUM_THREADS=36
+export OMP_NUM_THREADS=2
 
 # Load the module for ansys appropriate installation if necessary
 module load ansys/2020R2
 
-fluent 3ddp -t$OMP_NUM_THREADS -g -i ./Example.jou output.txt
+fluent 2ddp -t$OMP_NUM_THREADS -g -i ./Example.jou output.txt
